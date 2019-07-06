@@ -38,7 +38,7 @@ export class NodeDashClient {
         return result;
     }
 
-    public async getMediaData(): Promise<Buffer> {
+    public async getMediaFregment(): Promise<Buffer> {
         const segmentDuration: number = mpd.getMediaSegmentDuration();
         if (true === this.pooling) {
             await sleep(segmentDuration * 1000);
