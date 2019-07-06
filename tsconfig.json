@@ -1,9 +1,10 @@
 {
     "compilerOptions": {
-        "target": "es2017",
+        "target": "es2018",
         "outDir": "./build",
         "allowJs": false,
         "module": "commonjs",
+        "moduleResolution": "node",
         "strict": true, /* Enable all strict type-checking options. */
         "strictNullChecks": false,
         "noImplicitAny": true, /* Raise error on expressions and declarations with an implied 'any' type. */

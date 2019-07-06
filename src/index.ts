@@ -8,8 +8,8 @@
 import * as _ from 'lodash';
 import * as request from 'request-promise';
 
-import { sleep } from 'src/util';
-import * as mpd from 'src/mpd';
+import { sleep } from './util';
+import * as mpd from './mpd';
 
 export interface TNodeDashClientOptions {
     mpdFile: string;

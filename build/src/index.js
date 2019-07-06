@@ -7,8 +7,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const _ = require("lodash");
 const request = require("request-promise");
-const util_1 = require("src/util");
-const mpd = require("src/mpd");
+const util_1 = require("./util");
+const mpd = require("./mpd");
 class NodeDashClient {
     constructor(options) {
         this.pooling = false;
