@@ -2,7 +2,7 @@
 declare module "node-dash-client" {
 
     export class NodeDashClient {
-        new(options: TNodeDashClientOptions):void;
+        constructor(options: TNodeDashClientOptions);
         init(): Promise<void>;
         getFirstFregment(): Promise<Buffer>;
         getMediaFregment(): Promise<Buffer>;
