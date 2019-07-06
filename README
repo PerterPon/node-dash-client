@@ -1,1 +1,30 @@
-node client for dash protocol
+## Node Dash Client
+
+a sample tiny dash client for Nodejs, only implement the main function of dash.
+
+## sample usage
+
+```
+import { NodeDashClient } from 'node-dash-client';
+
+const app: NodeDashClient = new NodeDashClient({
+    mpdFile: 'https://example.com/radio.mpd'
+});
+
+await app.init();
+const data: Buffer[] = [];
+
+const firstFregment: Buffer = await app.getFirstFregment();
+data.push(firstFregment);
+
+while(true) {
+    const mediaFregment: Buffer = await app.getMediaFregment();
+    data.push(mediaFregment);
+}
+
+
+...
+
+
+Buffer.contat(data); // radio.mp4
+```

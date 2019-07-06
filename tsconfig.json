@@ -5,6 +5,7 @@
         "allowJs": false,
         "module": "commonjs",
         "strict": true, /* Enable all strict type-checking options. */
+        "strictNullChecks": false,
         "noImplicitAny": true, /* Raise error on expressions and declarations with an implied 'any' type. */
         "lib": [
             "es2017",
@@ -15,6 +16,7 @@
     },
     "include": [
         "./**/*",
+        "./index.d.ts"
     ],
     "exclude": [
         "node_modules",
