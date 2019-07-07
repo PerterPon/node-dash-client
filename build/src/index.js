@@ -23,7 +23,7 @@ class NodeDashClient {
         const result = await request({ url: firstFregmentUrl, encoding: null });
         return result;
     }
-    async getMediaData() {
+    async getMediaFregment() {
         const segmentDuration = mpd.getMediaSegmentDuration();
         if (true === this.pooling) {
             await util_1.sleep(segmentDuration * 1000);
