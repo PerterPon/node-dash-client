@@ -14,8 +14,8 @@ const app: NodeDashClient = new NodeDashClient({
 await app.init();
 const data: Buffer[] = [];
 
-const firstFregment: Buffer = await app.getFirstFregment();
-data.push(firstFregment);
+const firstFregment: TFirstFregment = await app.getFirstFregment();
+data.push(firstFregment.data);
 
 while(true) {
     const mediaFregment: Buffer = await app.getMediaFregment();
