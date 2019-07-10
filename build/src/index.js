@@ -21,7 +21,14 @@ class NodeDashClient {
     async getFirstFregment() {
         const firstFregmentUrl = mpd.getFirstSegmentUrl(this.currentRepresentation);
         const result = await request({ url: firstFregmentUrl, encoding: null });
-        return result;
+        return {
+            sampleRate: this.currentRepresentation,
+            codecs: mpd.getCodecs(),
+            timescale: mpd.getTimescale(),
+            mimeType: mpd.getMimeType(),
+            duration: mpd.getDuration(),
+            data: result,
+        };
     }
     async getMediaFregment() {
         const segmentDuration = mpd.getMediaSegmentDuration();

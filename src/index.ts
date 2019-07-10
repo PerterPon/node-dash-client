@@ -15,6 +15,15 @@ export interface TNodeDashClientOptions {
     mpdFile: string;
 }
 
+export interface TFirstFregment {
+    sampleRate: number;
+    codecs: string;
+    duration: string;
+    timescale: string;
+    data: Buffer;
+    mimeType: string;
+}
+
 export class NodeDashClient {
 
     private options: TNodeDashClientOptions;
@@ -32,10 +41,17 @@ export class NodeDashClient {
         await this.loadMPD();
     }
 
-    public async getFirstFregment(): Promise<Buffer> {
+    public async getFirstFregment(): Promise<TFirstFregment> {
         const firstFregmentUrl: string = mpd.getFirstSegmentUrl(this.currentRepresentation);
         const result: Buffer = await request({url: firstFregmentUrl, encoding: null});
-        return result;
+        return {
+            sampleRate: this.currentRepresentation,
+            codecs: mpd.getCodecs(),
+            timescale: mpd.getTimescale(),
+            mimeType: mpd.getMimeType(),
+            duration: mpd.getDuration(),
+            data: result,
+        };
     }
 
     public async getMediaFregment(): Promise<Buffer> {

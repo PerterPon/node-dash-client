@@ -128,3 +128,19 @@ export function getMediaSegmentDuration(): number {
     const template = mpd.MPD.Period.AdaptationSet.SegmentTemplate;
     return Number(template["@_duration"]) / Number(template["@_timescale"]);
 }
+
+export function getCodecs(): string {
+    return mpd.MPD.Period.AdaptationSet["@_codecs"];
+}
+
+export function getMimeType(): string {
+    return mpd.MPD.Period.AdaptationSet["@_mimeType"];
+}
+
+export function getDuration(): string {
+    return mpd.MPD.Period.AdaptationSet.SegmentTemplate["@_duration"];
+}
+
+export function getTimescale(): string {
+    return mpd.MPD.Period.AdaptationSet.SegmentTemplate["@_timescale"];
+}

@@ -74,3 +74,19 @@ function getMediaSegmentDuration() {
     return Number(template["@_duration"]) / Number(template["@_timescale"]);
 }
 exports.getMediaSegmentDuration = getMediaSegmentDuration;
+function getCodecs() {
+    return mpd.MPD.Period.AdaptationSet["@_codecs"];
+}
+exports.getCodecs = getCodecs;
+function getMimeType() {
+    return mpd.MPD.Period.AdaptationSet["@_mimeType"];
+}
+exports.getMimeType = getMimeType;
+function getDuration() {
+    return mpd.MPD.Period.AdaptationSet.SegmentTemplate["@_duration"];
+}
+exports.getDuration = getDuration;
+function getTimescale() {
+    return mpd.MPD.Period.AdaptationSet.SegmentTemplate["@_timescale"];
+}
+exports.getTimescale = getTimescale;
