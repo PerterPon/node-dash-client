@@ -54,23 +54,28 @@ export class NodeDashClient {
         };
     }
 
-    public async getMediaFregment(): Promise<Buffer> {
+    public async getMediaFregment(): Promise<{fregmengId: number, data: Buffer}> {
         const segmentDuration: number = mpd.getMediaSegmentDuration();
         if (true === this.pooling) {
             await sleep(segmentDuration * 1000);
         }
         this.pooling = true;
 
-        const result: Buffer = await this.doGetMediaData();
-        return result;
+        const now: number = Date.now() / 1000;
+        const segmentNumber: number = Math.floor(now / segmentDuration);
+        const result: Buffer = await this.doGetMediaData(segmentNumber);
+        return {
+            fregmengId: segmentNumber,
+            data: result,
+        };
     }
 
     public stop(): void {
         this.pooling = false;
     }
 
-    private async doGetMediaData(): Promise<Buffer> {
-        const mediaFregmentUrl: string = mpd.getMediaSegmentUrl(this.currentRepresentation);
+    private async doGetMediaData(segmentNumber: number): Promise<Buffer> {
+        const mediaFregmentUrl: string = mpd.getMediaSegmentUrl(this.currentRepresentation, segmentNumber);
         try {
             const result: Buffer = await request({url: mediaFregmentUrl, encoding: null});
             return result;
