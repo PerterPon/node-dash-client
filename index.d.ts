@@ -14,7 +14,7 @@ declare module "node-dash-client" {
         constructor(options: TNodeDashClientOptions);
         init(): Promise<void>;
         getFirstFregment(): Promise<TFirstFregment>;
-        getMediaFregment(): Promise<Buffer>;
+        getMediaFregment(): Promise<{fregmengId: number, data: Buffer}>;
         stop(): void;
     }
 
