@@ -36,14 +36,21 @@ class NodeDashClient {
             await util_1.sleep(segmentDuration * 1000);
         }
         this.pooling = true;
-        const result = await this.doGetMediaData();
-        return result;
+        const now = Date.now() / 1000;
+        const segmentNumber = Math.floor(now / segmentDuration);
+        return new Promise(async (resolve) => {
+            const result = await this.doGetMediaData(segmentNumber);
+            resolve({
+                fregmengId: segmentNumber,
+                data: result,
+            });
+        });
     }
     stop() {
         this.pooling = false;
     }
-    async doGetMediaData() {
-        const mediaFregmentUrl = mpd.getMediaSegmentUrl(this.currentRepresentation);
+    async doGetMediaData(segmentNumber) {
+        const mediaFregmentUrl = mpd.getMediaSegmentUrl(this.currentRepresentation, segmentNumber);
         try {
             const result = await request({ url: mediaFregmentUrl, encoding: null });
             return result;

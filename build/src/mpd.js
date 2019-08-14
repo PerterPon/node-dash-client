@@ -41,12 +41,9 @@ function getFirstSegmentUrl(representationId) {
     return `${baseURL}${dashFileName}`;
 }
 exports.getFirstSegmentUrl = getFirstSegmentUrl;
-function getMediaSegmentUrl(representationId) {
+function getMediaSegmentUrl(representationId, segmentNumber) {
     const template = mpd.MPD.Period.AdaptationSet.SegmentTemplate;
     const baseURL = mpd.MPD.BaseURL["#text"];
-    const segmentDutation = getMediaSegmentDuration();
-    const now = Date.now() / 1000;
-    const segmentNumber = Math.floor(now / segmentDutation);
     const mediaFileTemp = template["@_media"];
     const representation = getRepresentation(representationId);
     let mediaFileName = mediaFileTemp.replace('$RepresentationID$', representation);
