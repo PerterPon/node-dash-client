@@ -63,11 +63,13 @@ export class NodeDashClient {
 
         const now: number = Date.now() / 1000;
         const segmentNumber: number = Math.floor(now / segmentDuration);
-        const result: Buffer = await this.doGetMediaData(segmentNumber);
-        return {
-            fregmengId: segmentNumber,
-            data: result,
-        };
+        return new Promise(async (resolve) => {
+            const result: Buffer = await this.doGetMediaData(segmentNumber);
+            resolve({
+                fregmengId: segmentNumber,
+                data: result,
+            });
+        });
     }
 
     public stop(): void {
