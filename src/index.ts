@@ -62,7 +62,7 @@ export class NodeDashClient {
         this.pooling = true;
 
         const now: number = Date.now() / 1000;
-        const segmentNumber: number = Math.floor(now / segmentDuration);
+        const segmentNumber: number = Math.floor(now / segmentDuration) + 1;
         return new Promise(async (resolve) => {
             const result: Buffer = await this.doGetMediaData(segmentNumber);
             resolve({
